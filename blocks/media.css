@@ -70,12 +70,12 @@
     margin-left: 19px;
     margin-bottom: 36px;
   }
-  .add__button {
+  .profile__add--button {
     width: 282px;
     height: 50px;
     margin-left: 0;
   }
-  .edit__button {
+  .profile__edit--button {
     margin-top: 4px;
     margin-left: 10px;
   }

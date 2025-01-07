@@ -1,4 +1,4 @@
-.main {
+.profile {
   color: white;
   max-width: 1280px;
 }
@@ -14,7 +14,7 @@
   margin-right: 200px;
 }
 
-.profile {
+.profile__cnt {
   display: flex;
   align-items: center;
 }
@@ -34,7 +34,7 @@
   font-size: 18px;
 }
 
-.edit__button {
+.profile__edit__button {
   margin-top: 15;
 }
 .add__button_style {
@@ -46,7 +46,7 @@
   height: 24px;
 }
 
-.add__button {
+.profile__add__button {
   margin-left: 165px;
 }
 

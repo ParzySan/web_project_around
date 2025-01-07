@@ -1,0 +1,21 @@
+.header {
+  width: 880px;
+  height: 74px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 45px;
+  margin-left: 200px;
+}
+.header__logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__logo_style {
+  width: 173px;
+  height: 33px;
+}
+
+.header__line {
+  width: 880px;
+}

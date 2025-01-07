@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Título de la página</title>
+    <meta name="description" content="Página con JS básico" />
+    <meta name="author" content="almir caravantes" />
+    <title>Título de la página</title>
+    <link rel="stylesheet" href="./pages/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div>
+          <img
+            class="header__logo_style"
+            src="./images/Vector.png"
+            alt="Logo inicio"
+          />
+        </div>
+        <div>
+          <img
+            class="header__line"
+            src="./images/Line.png"
+            alt="linea punteada"
+          />
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="profile__container">
+          <div class="profile">
+            <img
+              class="profile__image"
+              src="./images/Avatar.png"
+              alt="Jacques Cousteau"
+            />
+          </div>
+          <div class="profile__info">
+            <div class="profile__header">
+              <p class="profile__name">Jacques Cousteau</p>
+              <button class="edit__button">
+                <img
+                  class="edit__button_style"
+                  src="./images/Edit_Button.png"
+                  alt="editar_usuario"
+                />
+              </button>
+            </div>
+            <p class="profile__role">Explorador</p>
+          </div>
+          <button class="add__button">
+            <img
+              class="add__button_style"
+              src="./images/Add_Button.png"
+              alt="boton_agregar"
+            />
+          </button>
+        </div>
+
+        <div class="overlay hidden"></div>
+
+        <!-- Ventana emergente (popup) -->
+        <div class="popup hidden">
+          <button class="popup__close">+</button>
+          <h2 class="popup__title">Editar perfil</h2>
+          <form class="popup__form">
+            <input
+              type="text"
+              class="popup__input popup__input_name"
+              placeholder="Nombre"
+            />
+
+            Acerca de mí
+            <input
+              type="text"
+              class="popup__input popup__input_role"
+              placeholder="Acerca de mi"
+            />
+
+            <button type="submit" class="popup__save-button">Guardar</button>
+          </form>
+        </div>
+
+        <div class="gallery__container">
+          <div class="gallery__card">
+            <img src="./images/Nieve.jpg" alt="Valle de Yosemite" />
+            <div class="card__info">
+              <h3>Valle de Yosemite</h3>
+              <button class="like__button">♡</button>
+            </div>
+          </div>
+          <div class="gallery__card">
+            <img src="./images/campo.jpg" alt="Lago Louise" />
+            <div class="card__info">
+              <h3>Lago Louise</h3>
+              <button class="like__button">♡</button>
+            </div>
+          </div>
+          <div class="gallery__card">
+            <img src="./images/China.jpg" alt="Montañas Calvas" />
+            <div class="card__info">
+              <h3>Montañas Calvas</h3>
+              <button class="like__button">♡</button>
+            </div>
+          </div>
+          <div class="gallery__card">
+            <img src="./images/cielo.jpg" alt="Latemar" />
+            <div class="card__info">
+              <h3>Latemar</h3>
+              <button class="like__button">♡</button>
+            </div>
+          </div>
+          <div class="gallery__card">
+            <img src="./images/estrellas.jpg" alt="Vanois National Park" />
+            <div class="card__info">
+              <h3>Vanois National Park</h3>
+              <button class="like__button">♡</button>
+            </div>
+          </div>
+          <div class="gallery__card">
+            <img src="./images/Puente.jpg" alt="Lago di Braies" />
+            <div class="card__info">
+              <h3>Lago di Braies</h3>
+              <button class="like__button">♡</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <div class="footer">
+          <img src="./images/Footer.png" alt="pie de página" />
+        </div>
+      </footer>
+    </div>
+    <script src="./Scripts/script.js"></script>
+  </body>
+</html>

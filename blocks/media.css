@@ -73,7 +73,6 @@
   .profile__add--button {
     width: 282px;
     height: 50px;
-    margin-left: 0;
   }
   .profile__edit--button {
     margin-top: 4px;
@@ -83,6 +82,7 @@
   .add__button_style {
     width: 282px;
     height: 50px;
+    margin-left: 165px;
   }
   .edit__button_style {
     width: 18px;

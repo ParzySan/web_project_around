@@ -2,11 +2,12 @@
   body {
     max-width: 320px;
   }
-  .gallery__container {
+  .gallery {
     grid-template-columns: repeat(1, 1fr);
     width: 282px;
     height: 2266px;
     margin-right: 0;
+    margin-left: 19px;
   }
 
   .header {
@@ -73,6 +74,7 @@
   .profile__add {
     width: 282px;
     height: 50px;
+    margin-left: 10px;
   }
   .profile__edit {
     margin-top: 4px;
@@ -82,12 +84,13 @@
   .profile__add_style {
     width: 282px;
     height: 50px;
-    margin-left: 165px;
+    margin-left: 0px;
   }
   .profile__edit_style {
     width: 18px;
     height: 18px;
     margin-top: 0;
+    margin-left: 0;
   }
 
   .profile__header {

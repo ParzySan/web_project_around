@@ -10,7 +10,7 @@ let profileName = document.querySelector(".profile__name"); // Nombre en el perf
 let profileRole = document.querySelector(".profile__role"); // Rol en el perfil
 
 // Botón de editar perfil y elementos de la ventana emergente
-let editButton = document.querySelector(".edit__button"); // Botón "Editar perfil"
+let editButton = document.querySelector(".profile__edit"); // Botón "Editar perfil"
 let overlay = document.querySelector(".overlay"); // Fondo oscuro
 let popup = document.querySelector(".popup"); // Ventana emergente
 let closeButton = document.querySelector(".popup__close"); // Botón para cerrar el popup

@@ -70,21 +70,21 @@
     margin-left: 19px;
     margin-bottom: 36px;
   }
-  .profile__add--button {
+  .profile__add {
     width: 282px;
     height: 50px;
   }
-  .profile__edit--button {
+  .profile__edit {
     margin-top: 4px;
     margin-left: 10px;
   }
 
-  .add__button_style {
+  .profile__add_style {
     width: 282px;
     height: 50px;
     margin-left: 165px;
   }
-  .edit__button_style {
+  .profile__edit_style {
     width: 18px;
     height: 18px;
     margin-top: 0;

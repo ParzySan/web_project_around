@@ -23,15 +23,16 @@
   height: 77px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin-left: 30px;
-  margin-top: 0;
-  padding: 0;
+  margin-top: 0px;
+  gap: 16px;
 }
 .profile__role {
   margin-top: 16px;
   font-family: "Inter";
   font-size: 18px;
-  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .profile__edit {
@@ -64,6 +65,7 @@
   margin-right: 18px;
   white-space: nowrap;
   overflow: hidden;
+  margin-bottom: 18px;
 }
 
 button {

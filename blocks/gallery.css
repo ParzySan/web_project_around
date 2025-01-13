@@ -51,9 +51,13 @@
 .gallery__title {
   overflow: hidden;
   white-space: nowrap;
-  overflow: hidden;
+  text-overflow: ellipsis;
   color: black;
   font-family: "Inter";
-  font-size: 16px;
-  height: 900;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }

@@ -8,6 +8,10 @@
     <meta name="author" content="almir caravantes" />
     <title>Around</title>
     <link rel="stylesheet" href="./pages/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="container">
@@ -50,7 +54,7 @@
             </div>
             <p class="profile__role">Explorador</p>
           </div>
-          <button class="profile__add">
+          <button class="profile__add" id="addButton">
             <img
               class="profile__add profile__add_style"
               src="./images/Add_Button.png"
@@ -62,70 +66,96 @@
         <div class="overlay hidden"></div>
 
         <!-- Ventana emergente (popup) -->
-        <div class="popup hidden">
-          <button class="popup__close">+</button>
+        <div class="popup hidden" id="editButton">
+          <button id="EditClose" class="popup__close">+</button>
           <h2 class="popup__title">Editar perfil</h2>
-          <form class="popup__form">
+          <form class="popup__form" id="formEdit">
             <input
               type="text"
               class="popup__input popup__input_name"
               placeholder="Nombre"
+              id="InputName"
             />
 
-            Acerca de mí
             <input
               type="text"
               class="popup__input popup__input_role"
               placeholder="Acerca de mi"
+              id="InputRole"
             />
 
             <button type="submit" class="popup__save-button">Guardar</button>
           </form>
         </div>
 
-        <div class="gallery">
-          <div class="gallery__card">
+        <div class="popup hidden" id="addImg">
+          <button id="AddClose" class="popup__close">+</button>
+          <h2 class="popup__title">Nuevo lugar</h2>
+          <form class="popup__form" id="formAdd">
+            <input
+              type="text"
+              class="popup__input popup__input_name"
+              id="TituloNew"
+              placeholder="Titulo"
+            />
+
+            <input
+              type="text"
+              class="popup__input popup__input_role"
+              id="LinkNew"
+              placeholder="Enlace a la imagen"
+            />
+
+            <button type="submit" class="popup__save-button">Crear</button>
+          </form>
+        </div>
+
+        <div class="gallery" id="card-list">
+          <button id="ImgClose" class="popup__close">+</button>
+          <!--  <div class="gallery__card">
             <img src="./images/Nieve.jpg" alt="Valle de Yosemite" />
             <div class="gallery__card-info">
               <h3 class="gallery__title">Valle de Yosemite</h3>
-              <button class="gallery__like-button">♡</button>
+              <button class="gallery__like-button">
+                <i class="fa-duotone fa-regular fa-heart"></i>
+              </button>
             </div>
           </div>
           <div class="gallery__card">
             <img src="./images/campo.jpg" alt="Lago Louise" />
             <div class="gallery__card-info">
               <h3 class="gallery__title">Lago Louise</h3>
-              <button class="gallery__like-button">♡</button>
+              <button class="gallery__like-button"></button>
             </div>
           </div>
           <div class="gallery__card">
             <img src="./images/China.jpg" alt="Montañas Calvas" />
             <div class="gallery__card-info">
               <h3 class="gallery__title">Montañas Calvas</h3>
-              <button class="gallery__like-button">♡</button>
+              <button class="gallery__like-button"></button>
             </div>
           </div>
           <div class="gallery__card">
             <img src="./images/cielo.jpg" alt="Latemar" />
             <div class="gallery__card-info">
               <h3 class="gallery__title">Latemar</h3>
-              <button class="gallery__like-button">♡</button>
+              <button class="gallery__like-button"></button>
             </div>
           </div>
           <div class="gallery__card">
             <img src="./images/estrellas.jpg" alt="Vanois National Park" />
             <div class="gallery__card-info">
               <h3 class="gallery__title">Vanois National Park</h3>
-              <button class="gallery__like-button">♡</button>
+              <button class="gallery__like-button"></button>
             </div>
           </div>
           <div class="gallery__card">
             <img src="./images/Puente.jpg" alt="Lago di Braies" />
             <div class="gallery__card-info">
               <h3 class="gallery__title">Lago di Braies</h3>
-              <button class="gallery__like-button">♡</button>
+              <button class="gallery__like-button"></button>
             </div>
-          </div>
+          </div>-->
         </div>
       </main>
 

@@ -30,7 +30,8 @@ let addButton = document.querySelector("#addButton");
 function openPopupEdit() {
   overlay.classList.add("visible");
   popupEdit.classList.add("visible");
-
+  editButtonSubmit.classList.add("active");
+  editButtonSubmit.disabled = false;
   // Precargar valores actuales en los campos del formulario
   nameInput.value = profileName.textContent;
   jobInput.value = profileRole.textContent;
@@ -46,8 +47,12 @@ function closePopupEdit() {
   popupEdit.classList.remove("visible");
 }
 function closePopupAdd() {
+  TitleInput.value = "";
+  ImgInput.value = "";
   overlay.classList.remove("visible");
   popupAdd.classList.remove("visible");
+  addButtonSubmit.disabled = true;
+  addButtonSubmit.classList.remove("active");
 }
 // Manejador (handler) para guardar los datos del formulario
 function handleProfileFormSubmit(evt) {
@@ -198,6 +203,65 @@ function estructurCard(name, link) {
   CardContainer.append(removebuttonCard, ImgCard, CardContainerInfo);
   return CardContainer;
 }
+
+function validateInput(input, errorMessage, regex = null) {
+  const errorElement = input.nextElementSibling;
+  if (!input.value.trim()) {
+    input.classList.add("error");
+    errorElement.textContent = errorMessage;
+
+    return false;
+  } else if (regex && !regex.test(input.value.trim())) {
+    input.classList.add("error");
+    errorElement.textContent = "Por favor, introduce una direcciín web";
+    return false;
+  } else {
+    input.classList.remove("error");
+    errorElement.textContent = "";
+    return true;
+  }
+}
+
+function checkFormValidity(form, button) {
+  const inputs = form.querySelectorAll(".popup__input");
+  let isValid = true;
+  inputs.forEach((input) => {
+    if (!input.value.trim() || input.classList.contains("error")) {
+      isValid = false;
+    }
+  });
+  button.disabled = !isValid;
+  button.classList.toggle("active", isValid);
+}
+
+function setupValidation(form, button) {
+  const inputs = form.querySelectorAll(".popup__input");
+  button.disabled = true;
+  inputs.forEach((input) => {
+    const errorElement = document.createElement("p");
+    errorElement.classList.add("error-message");
+    input.after(errorElement);
+
+    input.addEventListener("input", () => {
+      const isUrlField = input.id === "LinkNew";
+      const regex = isUrlField
+        ? /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))$/i
+        : null;
+      validateInput(input, "Por favor, rellena este campo.", regex);
+      checkFormValidity(form, button);
+    });
+    checkFormValidity(form, button);
+  });
+}
+
+// Agregar validación a los formularios
+const editForm = document.querySelector("#formEdit");
+const addForm = document.querySelector("#formAdd");
+const editButtonSubmit = editForm.querySelector(".popup__save-button");
+const addButtonSubmit = addForm.querySelector(".popup__save-button");
+
+setupValidation(editForm, editButtonSubmit);
+setupValidation(addForm, addButtonSubmit);
 
 mostrarList();
 

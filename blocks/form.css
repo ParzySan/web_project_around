@@ -48,7 +48,7 @@
 .popup__form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1px;
 }
 
 .popup__input {
@@ -61,18 +61,24 @@
 
 .popup__save-button {
   font-family: "Inter";
-  background-color: black;
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(120, 120, 120);
   margin-left: 36px;
-  margin-top: 48px;
+  margin-top: 24px;
   margin-bottom: 36px;
   padding: 10px;
-  border: none;
+  border: 1px solid #a3a3a3;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   width: 358px;
   height: 50.15px;
+}
+
+.popup__save-button.active {
+  background-color: #000000; /* Color habilitado */
+  color: white;
+  cursor: pointer;
 }
 
 .popup__input_name {
@@ -106,6 +112,20 @@ label {
   opacity: 50%;
 }
 
-.popup__save-button:hover {
+.popup__save-button.active:hover {
   opacity: 50%;
+}
+
+/* Estilo para el borde de los campos con error */
+.popup__input.error {
+  border-bottom: 1px solid red;
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+  font-family: "Inter";
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: 36px;
 }

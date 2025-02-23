@@ -7,14 +7,17 @@ class FormValidator {
 
   _validateInput(input, errorMessage, regex = null) {
     const errorElement = input.nextElementSibling;
-    if (!input.value.trim()) {
+    const trimmedValue = input.value.trim();
+
+    // Modificado mensaje de error aparece si hay 0 o 1 caracteres
+    if (trimmedValue.length < 2) {
       input.classList.add("error");
       errorElement.textContent = errorMessage;
-
       return false;
-    } else if (regex && !regex.test(input.value.trim())) {
+    } else if (regex && !regex.test(trimmedValue)) {
       input.classList.add("error");
-      errorElement.textContent = "Por favor, introduce una direcciín web";
+      errorElement.textContent =
+        "Por favor, introduce una dirección web válida.";
       return false;
     } else {
       input.classList.remove("error");
@@ -27,7 +30,7 @@ class FormValidator {
     const inputs = form.querySelectorAll(".popup__input");
     let isValid = true;
     inputs.forEach((input) => {
-      if (input.classList.contains("error") || input.value.length < 2) {
+      if (input.classList.contains("error") || input.value.trim().length < 2) {
         isValid = false;
       }
     });

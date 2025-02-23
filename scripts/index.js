@@ -1,86 +1,19 @@
-// Busquemos el formulario en el DOM
-let formElement = document.querySelector("#formEdit"); // Formulario de la ventana emergente
-let formElement2 = document.querySelector("#formAdd");
+import Card from "./Card.js";
+import {
+  abrirModal,
+  cerrarModal,
+  setupProfileEditor,
+  setupCardManager,
+} from "./utils.js";
+import FormValidator from "./FormValidator.js";
 
-const cardList = document.getElementById("card-list");
-const creatButton = document.getElementById("creatButton");
+const botonEditar = document.querySelector(".profile__edit"); // boton edit
+const modalEdit = document.querySelector("#editButton");
 
-// Busquemos los campos del formulario en el DOM
-let nameInput = document.querySelector("#InputName"); // Campo de nombre
-let jobInput = document.querySelector("#InputRole"); // Campo de rol
-let TitleInput = document.querySelector("#TituloNew"); // Campo de titulo
-let ImgInput = document.querySelector("#LinkNew"); // Campo de link de la imagen
-
-// Seleccionemos los elementos donde se mostrarán los valores actualizados
-let profileName = document.querySelector(".profile__name"); // Nombre en el perfil
-let profileRole = document.querySelector(".profile__role"); // Rol en el perfil
-
-// Botón de editar perfil y elementos de la ventana emergente
-let editButton = document.querySelector(".profile__edit"); // Botón "Editar perfil"
-let overlay = document.querySelector(".overlay"); // Fondo oscuro
-let popupEdit = document.querySelector("#editButton"); // Ventana emergente
-let popupAdd = document.querySelector("#addImg"); // Ventana emergente
-
-let closeButtonEdit = document.querySelector("#EditClose"); // Botón para cerrar el popup
-let closeButtonAdd = document.querySelector("#AddClose"); // Botón para cerrar el popup
-let closeButtonImg = document.querySelector("#ImgClose"); // Botón para cerrar el popup
+let modalAdd = document.querySelector("#addImg"); // Ventana emergente
 let addButton = document.querySelector("#addButton");
 
-// Función para abrir la ventana emergente
-function openPopupEdit() {
-  overlay.classList.add("visible");
-  popupEdit.classList.add("visible");
-  editButtonSubmit.classList.add("active");
-  editButtonSubmit.disabled = false;
-  // Precargar valores actuales en los campos del formulario
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileRole.textContent;
-}
-
-function openPopupAdd() {
-  overlay.classList.add("visible");
-  popupAdd.classList.add("visible");
-}
-// Función para cerrar la ventana emergente
-function closePopupEdit() {
-  overlay.classList.remove("visible");
-  popupEdit.classList.remove("visible");
-}
-function closePopupAdd() {
-  TitleInput.value = "";
-  ImgInput.value = "";
-  overlay.classList.remove("visible");
-  popupAdd.classList.remove("visible");
-  addButtonSubmit.disabled = true;
-  addButtonSubmit.classList.remove("active");
-}
-// Manejador (handler) para guardar los datos del formulario
-function handleProfileFormSubmit(evt) {
-  // Esta línea impide que el navegador entregue el formulario en su forma predeterminada.
-  evt.preventDefault();
-
-  // Obtén los valores de cada campo desde la propiedad de valor correspondiente
-  const newName = nameInput.value; // Valor del campo de nombre
-  const newJob = jobInput.value; // Valor del campo de rol
-
-  // Inserta los nuevos valores en el perfil
-  profileName.textContent = newName;
-  profileRole.textContent = newJob;
-
-  // Cierra la ventana emergente después de guardar los cambios
-  closePopupEdit();
-}
-
-function handleCardNew(evt) {
-  evt.preventDefault();
-
-  const newTitle = TitleInput.value;
-  const newImg = ImgInput.value;
-
-  creatCardNew(newTitle, newImg);
-
-  closePopupAdd();
-}
+const cardList = document.querySelector("#card-list");
 
 const initialCards = [
   {
@@ -109,171 +42,53 @@ const initialCards = [
   },
 ];
 
-//creatButton.addEventListener("click", crear);
+const nameInput = document.querySelector("#InputName"); // Campo de nombre
+const jobInput = document.querySelector("#InputRole");
+const profileName = document.querySelector(".profile__name"); // Nombre en el perfil
+const profileRole = document.querySelector(".profile__role");
 
-function creatCardNew(name, link) {
-  cardList.prepend(estructurCard(name, link));
+nameInput.value = profileName.textContent;
+jobInput.value = profileRole.textContent;
+
+function templateCard() {
+  const cardElement = document
+    .querySelector(".template__card")
+    .content.querySelector(".gallery__card")
+    .cloneNode(true);
+
+  return cardElement;
 }
 
-function removeCard(cardElement) {
-  cardElement.remove(); // Elimina la tarjeta del DOM
-}
+const renderCard = () => {
+  cardList.innerHTML = "";
+  initialCards.forEach((carta) => {
+    const tarjeta = new Card(carta.name, carta.link, templateCard());
 
-function mostrarList() {
-  initialCards.forEach((card) => {
-    cardList.append(estructurCard(card.name, card.link));
+    const elementocarta = tarjeta.generarCard();
+    cardList.append(elementocarta);
   });
-}
-function closePopupImg() {
-  popupAdd.classList.remove("visible");
-}
+};
 
-function openImageModal(imgElement, title) {
-  // Crear el modal
-  const modal = document.createElement("div");
-  modal.classList.add("image-modal");
+renderCard();
 
-  // Crear el contenedor del contenido
-  const modalContent = document.createElement("div");
-  modalContent.classList.add("image-modal__content");
+botonEditar.addEventListener("click", () => abrirModal(modalEdit));
+addButton.addEventListener("click", () => abrirModal(modalAdd));
 
-  const closeButton = document.createElement("button");
-  closeButton.textContent = "+";
-  closeButton.classList.add("image-modal__close-button");
-  closeButton.addEventListener("click", () => modal.remove());
+const popupEdit = document.querySelector("#EditClose");
+popupEdit.addEventListener("click", () => cerrarModal(modalEdit));
 
-  // Agregar la imagen al modal
-  const img = document.createElement("img");
-  img.src = imgElement.src; // Usar la misma imagen que se presionó
-  img.alt = title;
-  img.classList.add("image-modal__image");
+const popupAdd = document.querySelector("#AddClose");
+popupAdd.addEventListener("click", () => cerrarModal(modalAdd));
 
-  // Agregar el título al modal
-  const modalTitle = document.createElement("h3");
-  modalTitle.textContent = title;
-  modalTitle.classList.add("image-modal__title");
-
-  modalContent.classList.add("active");
-  // Botón para cerrar el modal
-
-  // Agregar elementos al modal
-  modalContent.appendChild(img);
-  modalContent.appendChild(modalTitle);
-  modalContent.appendChild(closeButton);
-  modal.appendChild(modalContent);
-
-  // Agregar el modal al body
-  document.body.appendChild(modal);
-
-  modal.addEventListener("click", (e) => {
-    if (!modalContent.contains(e.target)) {
-      modal.remove();
-    }
-  });
-}
-
-function estructurCard(name, link) {
-  const CardContainer = document.createElement("div");
-  CardContainer.classList.add("gallery__card");
-
-  const ImgCard = document.createElement("img");
-  ImgCard.src = link;
-  ImgCard.addEventListener("click", () => openImageModal(ImgCard, name));
-
-  const CardContainerInfo = document.createElement("div");
-  CardContainerInfo.classList.add("gallery__card-info");
-
-  const removebuttonCard = document.createElement("button");
-  removebuttonCard.classList.add("gallery__remove-button");
-  removebuttonCard.addEventListener("click", () => removeCard(CardContainer));
-
-  const titleCard = document.createElement("h3");
-  titleCard.classList.add("gallery__title");
-  titleCard.textContent = name;
-
-  const likebuttonCard = document.createElement("button");
-  likebuttonCard.classList.add("gallery__like-button");
-
-  likebuttonCard.addEventListener("click", () => {
-    likebuttonCard.classList.toggle("activa");
-  });
-
-  CardContainerInfo.append(titleCard, likebuttonCard);
-
-  CardContainer.append(removebuttonCard, ImgCard, CardContainerInfo);
-  return CardContainer;
-}
-
-function validateInput(input, errorMessage, regex = null) {
-  const errorElement = input.nextElementSibling;
-  if (!input.value.trim()) {
-    input.classList.add("error");
-    errorElement.textContent = errorMessage;
-
-    return false;
-  } else if (regex && !regex.test(input.value.trim())) {
-    input.classList.add("error");
-    errorElement.textContent = "Por favor, introduce una direcciín web";
-    return false;
-  } else {
-    input.classList.remove("error");
-    errorElement.textContent = "";
-    return true;
-  }
-}
-
-function checkFormValidity(form, button) {
-  const inputs = form.querySelectorAll(".popup__input");
-  let isValid = true;
-  inputs.forEach((input) => {
-    if (!input.value.trim() || input.classList.contains("error")) {
-      isValid = false;
-    }
-  });
-  button.disabled = !isValid;
-  button.classList.toggle("active", isValid);
-}
-
-function setupValidation(form, button) {
-  const inputs = form.querySelectorAll(".popup__input");
-  button.disabled = true;
-  inputs.forEach((input) => {
-    const errorElement = document.createElement("p");
-    errorElement.classList.add("error-message");
-    input.after(errorElement);
-
-    input.addEventListener("input", () => {
-      const isUrlField = input.id === "LinkNew";
-      const regex = isUrlField
-        ? /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))$/i
-        : null;
-      validateInput(input, "Por favor, rellena este campo.", regex);
-      checkFormValidity(form, button);
-    });
-    checkFormValidity(form, button);
-  });
-}
-
-// Agregar validación a los formularios
+// Aplicando la validación a los formularios
 const editForm = document.querySelector("#formEdit");
+
 const addForm = document.querySelector("#formAdd");
-const editButtonSubmit = editForm.querySelector(".popup__save-button");
-const addButtonSubmit = addForm.querySelector(".popup__save-button");
 
-setupValidation(editForm, editButtonSubmit);
-setupValidation(addForm, addButtonSubmit);
+new FormValidator(editForm);
 
-mostrarList();
+new FormValidator(addForm);
+//editForm.addEventListener("submit", handleProfileFormSubmit(evt));
 
-// Conecta los manejadores (handlers) a los eventos correspondientes
-editButton.addEventListener("click", openPopupEdit); // Abrir ventana emergente al hacer clic en el botón de editar
-addButton.addEventListener("click", openPopupAdd); // Abrir ventana emergente al hacer clic en el botón de editar
-
-closeButtonEdit.addEventListener("click", closePopupEdit); // Cerrar ventana emergente al hacer clic en el botón de cerrar
-closeButtonAdd.addEventListener("click", closePopupAdd); // Cerrar ventana emergente al hacer clic en el botón de cerrar
-
-overlay.addEventListener("click", closePopupAdd); // Cerrar ventana emergente al hacer clic en el fondo oscuro
-overlay.addEventListener("click", closePopupEdit); // Cerrar ventana emergente al hacer clic en el fondo oscuro
-
-formElement.addEventListener("submit", handleProfileFormSubmit);
-formElement2.addEventListener("submit", handleCardNew);
+setupProfileEditor(formEdit, profileName, profileRole);
+setupCardManager(formAdd, cardList);

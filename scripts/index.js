@@ -1,11 +1,10 @@
 import Card from "./Card.js";
-import {
-  abrirModal,
-  cerrarModal,
-  setupProfileEditor,
-  setupCardManager,
-} from "./utils.js";
+// import { setupCardManager } from "./utils.js";
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+import { PopupWithForm } from "./PopupWitchForm.js";
+import { UserInfo } from "./Userinfo.js";
 
 const botonEditar = document.querySelector(".profile__edit"); // boton edit
 const modalEdit = document.querySelector("#editButton");
@@ -46,49 +45,90 @@ const nameInput = document.querySelector("#InputName"); // Campo de nombre
 const jobInput = document.querySelector("#InputRole");
 const profileName = document.querySelector(".profile__name"); // Nombre en el perfil
 const profileRole = document.querySelector(".profile__role");
+// const tituloInput = document.querySelector("#TituloNew");
+// const linkInput = document.querySelector("#LinkNew");
 
 nameInput.value = profileName.textContent;
 jobInput.value = profileRole.textContent;
 
-function templateCard() {
-  const cardElement = document
-    .querySelector(".template__card")
-    .content.querySelector(".gallery__card")
-    .cloneNode(true);
-
-  return cardElement;
+//function handleCardClick abre image size up
+function handleCardClick(name, link) {
+  popupWithImage.open({ link, name });
 }
 
-const renderCard = () => {
-  cardList.innerHTML = "";
-  initialCards.forEach((carta) => {
-    const tarjeta = new Card(carta.name, carta.link, templateCard());
+//PopupWithImage para visualizar card size up
+const popupWithImage = new PopupWithImage("#popup-size-card");
 
-    const elementocarta = tarjeta.generarCard();
-    cardList.append(elementocarta);
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const card = new Card(cardData, "#card-template", handleCardClick);
+      const cardElement = card.generarCard();
+      cardSection.addItems(cardElement);
+    },
+  },
+  "#card-list"
+);
+
+//instancia de UserInfo clase
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  aboutSelector: ".profile__role",
+});
+
+const popupProfileForm = new PopupWithForm("#editButton", (formData) => {
+  userInfo.setUserInfo({
+    name: formData.name,
+    about: formData.job,
   });
-};
+  popupProfileForm.close();
+});
 
-renderCard();
+botonEditar.addEventListener("click", () => {
+  popupProfileForm.open();
+});
 
-botonEditar.addEventListener("click", () => abrirModal(modalEdit));
-addButton.addEventListener("click", () => abrirModal(modalAdd));
+const popupAddCardForm = new PopupWithForm("#addImg", (formData) => {
+  const cardData = {
+    name: formData.title,
+    link: formData.link,
+  };
 
-const popupEdit = document.querySelector("#EditClose");
-popupEdit.addEventListener("click", () => cerrarModal(modalEdit));
+  const card = new Card(cardData, "#card-template", handleCardClick);
 
-const popupAdd = document.querySelector("#AddClose");
-popupAdd.addEventListener("click", () => cerrarModal(modalAdd));
+  const cardElement = card.generarCard();
+  const popup = document.getElementById("CrearButton");
+  cardSection.addItems(cardElement);
+  popup.disabled = true;
+  popup.classList.remove("active");
+  popupAddCardForm._form.reset();
+
+  popupAddCardForm.close();
+});
+
+addButton.addEventListener("click", () => {
+  popupAddCardForm.open();
+});
+
+// const popupAdd = document.querySelector("#AddClose");
+// popupAdd.addEventListener("click", () => cerrarModal(modalAdd));
 
 // Aplicando la validación a los formularios
 const editForm = document.querySelector("#formEdit");
 
 const addForm = document.querySelector("#formAdd");
 
+// editForm.addEventListener("submit", handleProfileFormSubmit(evt));
+cardSection.renderItems();
+// popupWithImage.setEventListeners();
+// profileFormValidator.setupProfileEditor(formEdit, profileName, profileRole);
+// setupCardManager(formAdd, cardList);
+
+popupWithImage.setEventListeners();
+popupProfileForm.setEventListeners();
+popupAddCardForm.setEventListeners();
+
 new FormValidator(editForm);
 
 new FormValidator(addForm);
-//editForm.addEventListener("submit", handleProfileFormSubmit(evt));
-
-setupProfileEditor(formEdit, profileName, profileRole);
-setupCardManager(formAdd, cardList);

@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(form) {
     this._form = form;
     const buttonSubmit = form.querySelector(".popup__save-button");
@@ -42,9 +42,14 @@ class FormValidator {
     const inputs = form.querySelectorAll(".popup__input");
 
     inputs.forEach((input) => {
-      const errorElement = document.createElement("p");
-      errorElement.classList.add("error-message");
-      input.after(errorElement);
+      const claseP = document.querySelector("error-message");
+      if (claseP) {
+        claseP.remove();
+      } else {
+        const errorElement = document.createElement("p");
+        errorElement.classList.add("error-message");
+        input.after(errorElement);
+      }
 
       input.addEventListener("input", () => {
         const isUrlField = input.id === "LinkNew";

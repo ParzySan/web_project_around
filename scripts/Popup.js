@@ -7,14 +7,12 @@ export class Popup {
 
   //método público para abrir popup
   open() {
-    // this._popup.classList.add("visible");
     this._fondo.classList.add("visible");
     document.addEventListener("keydown", this._handleEscClose);
   }
 
   //método público para cerrar popup
   close() {
-    // this._popup.classList.remove("visible");
     this._fondo.classList.remove("visible");
     document.removeEventListener("keydown", this._handleEscClose);
   }

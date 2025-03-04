@@ -3,7 +3,7 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWitchForm.js";
+import { PopupWithForm } from "./PopupWithForm.js";
 import { UserInfo } from "./Userinfo.js";
 
 const botonEditar = document.querySelector(".profile__edit"); // boton edit

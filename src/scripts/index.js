@@ -1,6 +1,5 @@
 import Card from "./Card.js";
 import { Api } from "./API.js";
-// import { setupCardManager } from "./utils.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import { PopupWithImage } from "./PopupWithImage.js";

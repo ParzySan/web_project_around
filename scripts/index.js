@@ -17,42 +17,12 @@ let addButton = document.querySelector("#addButton");
 
 const cardList = document.querySelector("#card-list");
 
-// const initialCards = [
-//   {
-//     name: "Valle de Yosemite",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-//   },
-//   {
-//     name: "Lago Louise",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-//   },
-//   {
-//     name: "Montañas Calvas",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-//   },
-//   {
-//     name: "Latemar",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-//   },
-//   {
-//     name: "Parque Nacional de la Vanoise",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-//   },
-//   {
-//     name: "Lago di Braies",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-//   },
-// ];
-
 const nameInput = document.querySelector("#InputName"); // Campo de nombre
 const jobInput = document.querySelector("#InputRole");
 const profileName = document.querySelector(".profile__name"); // Nombre en el perfil
 const profileRole = document.querySelector(".profile__role");
 const modalDelete = document.querySelector("#DeleteImng");
 const avatarButton = document.querySelector("#button__profile");
-
-// const tituloInput = document.querySelector("#TituloNew");
-// const linkInput = document.querySelector("#LinkNew");
 
 nameInput.value = profileName.textContent;
 jobInput.value = profileRole.textContent;
@@ -69,13 +39,6 @@ function handleDeleteClick() {
 }
 popupTrash.setEventListeners();
 
-// const botonEliminar = document.querySelector(".gallery__remove-button");
-// const popupwithdelete = new PopupWithConfirmation("#deteleImg");
-
-// botonEliminar.addEventListener("click", () => {
-//   popupwithdelete.open();
-// });
-
 //PopupWithImage para visualizar card size up
 const popupWithImage = new PopupWithImage("#popup-size-card");
 const api = new Api({
@@ -85,17 +48,7 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-// const cardSection = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (cardData) => {
-//       const card = new Card(cardData, "#card-template", handleCardClick);
-//       const cardElement = card.generarCard();
-//       cardSection.addItems(cardElement);
-//     },
-//   },
-//   "#card-list"
-// );
+
 const cardSection = new Section(
   {
     items: [], // Se llenará después de la solicitud GET
@@ -149,48 +102,6 @@ botonEditar.addEventListener("click", () => {
   popupProfileForm.open();
 });
 
-//
-// const popupProfileForm = new PopupWithForm("#editButton", async (formData) => {
-//   try {
-//     popupProfileForm.textContent = "Guardando...";
-//     const response = await fetch(
-//       "https://around-api.es.tripleten-services.com/v1/users/me",
-//       {
-//         method: "PATCH",
-//         headers: {
-//           authorization: "f42c585d-cc5f-427e-b862-3b4799acc436",
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           name: formData.name,
-//           about: formData.job,
-//         }),
-//       }
-//     );
-
-//     if (!response.ok) {
-//       throw new Error(`Error al actualizar los datos: ${response.status}`);
-//     }
-
-//     const updatedUserData = await response.json();
-
-//     // Actualizar los datos en la interfaz
-//     userInfo.setUserInfo({
-//       name: updatedUserData.name,
-//       about: updatedUserData.about,
-//     });
-//   } catch (error) {
-//     console.error("Error al guardar la información del usuario:", error);
-//   } finally {
-//     () => {
-//       // Rehabilitar el botón después de la solicitud
-//       popupProfileForm.textContent = "Guardar";
-//       popupProfileForm.disabled = true;
-//       popupProfileForm.close();
-//     };
-//   }
-// });
-//
 const textContent = document.querySelector("#EditButton");
 const popupProfileForm = new PopupWithForm("#editButton", (formData) => {
   textContent.textContent = "Guardando...";
@@ -287,17 +198,6 @@ const popupAddCardForm = new PopupWithForm("#addImg", (formData) => {
 addButton.addEventListener("click", () => {
   popupAddCardForm.open();
 });
-// const bottonAvar = document.querySelector("#AvatarButton");
-// const formAvatar = document.querySelector(".popup__input_profile");
-
-// bottonAvar.addEventListener("click", () => {
-//   formAvatar.actualizarAvatar(formAvatar);
-// });
-// botonEliminar.addEventListener("click", () => {
-//   popupDelete.open();
-// });
-// const popupAdd = document.querySelector("#AddClose");
-// popupAdd.addEventListener("click", () => cerrarModal(modalAdd));
 
 // Aplicando la validación a los formularios
 const editForm = document.querySelector("#formEdit");
@@ -306,18 +206,11 @@ const addForm = document.querySelector("#formAdd");
 
 const profileForm = document.querySelector("#formdelete");
 
-// editForm.addEventListener("submit", handleProfileFormSubmit(evt));
 cardSection.renderItems();
-// popupWithImage.setEventListeners();
-// profileFormValidator.setupProfileEditor(formEdit, profileName, profileRole);
-// setupCardManager(formAdd, cardList);
 
 popupWithImage.setEventListeners();
 popupProfileForm.setEventListeners();
 popupAddCardForm.setEventListeners();
-
-// popupwithdelete.setEventListeners();
-// modalDelete.setEventListeners();
 
 new FormValidator(editForm);
 new FormValidator(profileForm);

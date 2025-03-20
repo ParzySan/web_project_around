@@ -88,6 +88,23 @@ export default class Card {
     }
   }
 
+  _deleteCard() {
+    fetch(`https://around-api.es.tripleten-services.com/v1/cards/${this._id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "f42c585d-cc5f-427e-b862-3b4799acc436",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Tarjeta eliminada exitosamente");
+        } else {
+          console.log("Error al eliminar la tarjeta");
+        }
+      })
+      .catch((error) => console.error("Error en la solicitud:", error));
+  }
   //funcion para eliminar card
 
   generarCard() {

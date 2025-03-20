@@ -38,7 +38,12 @@ export class PopupWithConfirmation extends Popup {
           console.log("Error al eliminar la tarjeta");
         }
       })
-      .catch((error) => console.error("Error en la solicitud:", error));
+      .catch((error) => console.error("Error en la solicitud:", error))
+
+      .finally(() => {
+        this.close();
+        location.reload();
+      });
 
     // console.log(this._id);
   }

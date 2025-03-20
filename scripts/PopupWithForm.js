@@ -8,7 +8,7 @@ export class PopupWithForm extends Popup {
     this._inputList = this._form.querySelectorAll(".popup__input");
   }
 
-  //método privado para recopilar datos de enrada
+  // método privado para recopilar datos de enrada
   _getInputValues() {
     const formValues = {};
     this._inputList.forEach((input) => {

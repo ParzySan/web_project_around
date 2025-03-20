@@ -35,15 +35,14 @@
       <main class="profile">
         <div class="profile__container">
           <div class="profile__cnt">
-            <img
-              class="profile__image"
-              src="./images/Avatar.png"
-              alt="Jacques Cousteau"
-            />
+            <img class="profile__image" src="" alt="Jacques Cousteau" />
+            <button class="profile__button" id="button__profile">
+              <img class="profile__image-edit" src="./images/Edit_Button.png" />
+            </button>
           </div>
           <div class="profile__info">
             <div class="profile__header">
-              <p class="profile__name">Jacques Cousteau</p>
+              <p class="profile__name"></p>
               <button class="profile__edit">
                 <img
                   class="profile__edit profile__edit_style"
@@ -52,7 +51,7 @@
                 />
               </button>
             </div>
-            <p class="profile__role">Explorador</p>
+            <p class="profile__role"></p>
           </div>
           <button type="submit" class="profile__add" id="addButton">
             <img
@@ -120,6 +119,32 @@
 
             <button id="CrearButton" type="submit" class="popup__save-button">
               Crear
+            </button>
+          </form>
+        </div>
+
+        <div class="popup hidden delete" id="deleteImg">
+          <button id="AddClose" class="popup__close">+</button>
+          <h2 class="popup__title">¿Estás seguro/a?</h2>
+
+          <button id="deleteButton" type="submit" class="popup__save-button">
+            Si
+          </button>
+        </div>
+
+        <div class="popup hidden avatar" id="editAvatar">
+          <button id="AddClose" class="popup__close">+</button>
+          <h2 class="popup__title">Cambiar foto de perfil</h2>
+          <form class="popup__form" id="formdelete">
+            <input
+              type="url"
+              name="avatar"
+              class="popup__input popup__input_profile"
+              id="LinkNew"
+              placeholder="Enlace a la imagen"
+            />
+            <button id="AvatarButton" type="submit" class="popup__save-button">
+              Guardar
             </button>
           </form>
         </div>

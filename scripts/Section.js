@@ -20,7 +20,11 @@ export default class Section {
   //   return cardElement;
   // }
 
-  renderItems() {
+  // renderItems() {
+  //   this._items.forEach((item) => this._renderer(item));
+  // }
+
+  renderItems(items) {
     this._items.forEach((item) => this._renderer(item));
   }
 

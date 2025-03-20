@@ -18,5 +18,6 @@ export class PopupWithImage extends Popup {
   close() {
     super.close();
     this._popup.classList.remove("active");
+    // this._botonCrear = false;
   }
 }

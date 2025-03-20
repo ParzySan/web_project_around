@@ -89,20 +89,6 @@
 
 /* Estilo del modal */
 .image-modal {
-  /* position: fixed;
-  background-color: aqua;
-  width: 100vw;
-  height: 100vh; */
-
-  /* Fondo oscuro semi-transparente */
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100000;
-  overflow: hidden;
-  margin-top: 0; Evita el desplazamiento horizontal */
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  /* background-color: aqua; */
   display: none;
   justify-content: center;
   align-items: center;
@@ -156,29 +142,6 @@
 }
 
 .image-modal__close-button {
-  /* position: fixed; */
-  /* Posiciona la "X" respecto al contenedor */
-  /* top: 90px; */
-  /* Sobre la imagen */
-  /* right: 200px; */
-  /* position: fixed;
-  top: 90px;
-  right: 200px; */
-  /* left: 40px; */
-  /* right: -5px; */
-  /* cursor: pointer; */
-  /* z-index: 2; */
-
-  /* margin-top: -25px;
-  right: 1px;
-  margin-right: 380px; */
-  /* transform: rotate(45deg) scale(3);
-
-  border: none;
-  background: none;
-  font-size: 20px; */
-  /* cursor: pointer; */
-  /* color: white; */
   position: absolute; /* Posiciona la "X" respecto al contenedor */
   top: -25px; /* Sobre la imagen */
   right: 20px;

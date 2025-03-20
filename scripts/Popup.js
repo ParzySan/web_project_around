@@ -28,7 +28,7 @@ export class Popup {
   setEventListeners() {
     this._popup.addEventListener("click", (evt) => {
       if (
-        evt.target.classList.contains("active") ||
+        // evt.target.classList.contains("active") ||
         evt.target.closest(".popup__close") ||
         evt.target.closest(".image-modal__close-button")
       ) {

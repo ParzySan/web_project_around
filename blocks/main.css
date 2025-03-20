@@ -16,8 +16,29 @@
 .profile__cnt {
   display: flex;
   align-items: center;
+  border-radius: 50%;
 }
 
+.profile__image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* Convierte el contenedor en un círculo */
+  object-fit: cover;
+}
+
+.profile__cnt:hover .profile__image {
+  filter: brightness(50%);
+}
+
+.profile__button {
+  position: absolute;
+  margin-left: 45px;
+  opacity: 0;
+}
+
+.profile__cnt:hover .profile__button {
+  opacity: 1;
+}
 .profile__info {
   width: 415px;
   height: 77px;

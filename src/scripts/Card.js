@@ -73,7 +73,7 @@ export default class Card {
         return res.json();
       })
       .then((updatedCard) => {
-        this._isLiked = !false; // Actualiza el estado con la respuesta de la API
+        // this._isLiked = !false; // Actualiza el estado con la respuesta de la API
         this._updateLikeStatus(); // Refleja el nuevo estado en la UI
       })
       .catch((err) => console.error("Error al actualizar el like:", err));
